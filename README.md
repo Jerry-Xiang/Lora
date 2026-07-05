@@ -206,6 +206,44 @@ PyTorch 与 NumPy 2.x 存在兼容性问题：
 
 本项目基于 Apache 2.0 许可证。
 
+```
+Copyright 2026 Your Name
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+
+## 项目信息
+
+**项目名称**：Qwen2-VL 3B LoRA 视觉语言模型微调项目  
+**作者**：[您的姓名]  
+**版本**：1.0.0  
+**创建时间**：2026年7月  
+**项目类型**：人工智能/深度学习/自然语言处理/计算机视觉  
+
+**项目特点**：
+- 基于阿里巴巴达摩院 Qwen2.5-VL-3B 模型
+- 实现 LoRA 低秩自适应微调
+- 支持车辆里程表信息提取
+- 工厂化设计模式，模块化架构
+- 完整的训练、推理、合并流程
+- 详细的日志记录和错误处理
+
+**应用场景**：
+- 车辆信息识别系统
+- 图像文本联合识别
+- 视觉语言模型微调研究
+- 自动化数据标注工具
+
 ## 致谢
 
 - Qwen2.5-VL 模型由阿里巴巴达摩院提供
