@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs
+*.log
+*.tmp
+
+# Model files
+models
+car_insurance_lora_model
+outputs
+
+# Data
+data/images*.jpg
+data/images*.png
+data/images*.jpeg
+
+# PyTorch
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Cache
+.cache/
+.huggingface/
+.modelscope/
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Security
+.env
+*.key
+*.secret
+*.token
+
+# Temporary
+*.tmp
+*.bak
+*.backup

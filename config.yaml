@@ -1,0 +1,68 @@
+# -*- coding: utf-8 -*-
+# Qwen2-VL 3B 视觉模型微调配置文件
+
+# ==================== 基础路径配置 ====================
+base_dir: "D:\\Programs\\cursor_proj\\Case_lora" # 项目根目录
+
+# ==================== 模型配置 ====================
+model:
+  model_id: "qwen/Qwen2.5-VL-3B-Instruct" # 模型 ID，用于加载模型
+  cache_dir: "models"    # 模型缓存目录
+  trust_remote_code: true # 是否信任远程代码，用于加载模型
+  torch_dtype: "float16" # 模型数据类型，用于内存效率
+  device_map: "auto" # 自动映射到可用的设备（CPU 或 GPU）
+  use_4bit: false  # 是否使用4bit量化加载（需安装bitsandbytes，仅在有足够内存时推荐）
+
+# ==================== 数据配置 ====================
+data:
+  train_excel: "data\\qwen-vl-train.xlsx"
+  test_image: "data\\images\\1-vehicle-odometer-reading.jpg"
+  max_seq_length: 1280 # 最大序列长度，超过部分会被截断或填充
+
+# ==================== LoRA 配置 ====================
+lora:
+  r: 16 # LoRA 空间维度
+  alpha: 16 # LoRA 空间维度
+  dropout: 0.0 # dropout 率，用于防止过拟合
+  bias: "none" # 是否添加偏置项，"none" 表示不添加
+  task_type: "CAUSAL_LM" # 任务类型，"CAUSAL_LM" 表示因果语言模型
+  use_rslora: false  # 是否使用 RSLora（RSLora 是 LoRA 的一种变体，用于处理长文本）
+
+# ==================== 训练配置 ====================
+training:
+  output_dir: "outputs" # 输出目录，用于保存训练结果
+  lora_save_dir: "car_insurance_lora_model"   # LoRA 模型保存目录
+  per_device_train_batch_size: 1 # 每个训练批次的样本数
+  gradient_accumulation_steps: 1 # 梯度累加步数
+  warmup_steps: 2 # 预热步数（LR从0→max_lr）
+  max_steps: 60 # 最大训练步数
+  learning_rate: 2.0e-4 # 初始学习率
+  logging_steps: 1 # 日志记录步数
+  optim: "adamw_torch" # 优化器类型
+  weight_decay: 0.01 # 权重衰减率
+  lr_scheduler_type: "linear" # 学习率调度器类型
+  seed: 3407 # 随机种子，用于复现结果
+  report_to: "none" # 报告工具，如 WandB、TensorBoard 等
+  report_name: "car_insurance_lora" # 报告名称
+  remove_unused_columns: false # 是否移除未使用的列，如标签列
+  fp16: true # 是否使用 float16 训练
+  bf16: false # 是否使用 bfloat16 训练，仅在有足够内存时推荐
+  gradient_checkpointing: true  # 是否使用梯度检查点，用于内存效率
+  save_strategy: "steps" # 保存策略，"steps" 或 "epoch"
+  save_steps: 10 # 保存步数，"steps" 时有效
+  save_total_limit: 3 # 最大保存模型数量
+
+# ==================== 推理测试配置 ====================
+inference:
+  max_new_tokens: 256 # 最大生成 token 数量 
+  use_cache: true # 是否使用缓存，用于加速推理
+  temperature: 0.7 # 温度，用于控制生成文本的随机性
+  min_p: 0.1 # 最小 p 值，用于控制生成文本的随机性
+  skip_pre_test: false # 是否跳过预测试，（已有测试模型时可跳过）
+
+# ==================== 流程控制配置 ====================
+workflow:
+  skip_lora_config: false          # 是否跳过 LoRA 配置（已有 adapter 时可跳过）
+  skip_training: false             # 是否跳过训练（已有训练模型时可跳过）
+  skip_data_preparation: false     # 是否跳过数据准备
+  skip_inference: false            # 是否跳过推理测试

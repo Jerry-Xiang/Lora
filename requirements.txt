@@ -1,0 +1,43 @@
+# Qwen2-VL 3B 视觉模型微调 - 依赖包版本
+# 安装命令: pip install -r requirements.txt
+# 注意：建议在虚拟环境中安装
+
+# ==================== 核心深度学习框架 ====================
+# PyTorch CPU版本（如需GPU支持，请替换为带cu121后缀的版本）
+torch==2.12.1+cpu --index-url https://download.pytorch.org/whl/cpu
+
+# ==================== HuggingFace生态 ====================
+# Transformers模型库
+transformers==4.57.6
+# PEFT LoRA微调库
+peft==0.19.1
+# 分布式训练支持
+accelerate==1.13.0
+# 4bit量化（可选，需要CUDA支持）
+bitsandbytes==0.49.2
+
+# ==================== 数据处理 ====================
+# Excel数据读取
+pandas==2.3.3
+# 图片处理
+Pillow==11.3.0
+# 数值计算（注意：NumPy 2.x与PyTorch存在兼容性问题）
+numpy<2.0
+
+# ==================== 模型下载 ====================
+# ModelScope模型下载
+modelscope==1.36.3
+
+# ==================== 工具库 ====================
+# 系统资源监控
+psutil==7.2.2
+# 配置文件解析
+PyYAML==6.0.3
+
+# ==================== 可选依赖（根据需要安装） ====================
+# openpyxl - 用于读取xlsx格式的Excel文件（pandas依赖）
+openpyxl==3.1.5
+# scipy - 科学计算（modelscope依赖）
+scipy==1.14.1
+# sentence-transformers - 句子嵌入（modelscope依赖）
+sentence-transformers==5.6.0
