@@ -1,0 +1,225 @@
+================================================================================
+Qwen2-VL 3B 视觉模型微调 - 图片识别
+================================================================================
+开始执行时间: 2026-07-03 07:41:55
+
+
+============================================================
+Step 1: 配置初始化
+============================================================
+项目根目录: d:\Programs\cursor_proj\Case_lora
+运行设备: cpu
+输出目录: d:\Programs\cursor_proj\Case_lora\outputs
+LoRA保存目录: d:\Programs\cursor_proj\Case_lora\car_insurance_lora_model
+模型缓存目录: d:\Programs\cursor_proj\Case_lora\models
+配置加载完成！
+Step 1: 配置初始化完成
+
+
+============================================================
+Step 2: 模型下载与加载
+============================================================
+
+============================================================
+使用 ModelScope 下载模型
+============================================================
+模型已存在，跳过下载: d:\Programs\cursor_proj\Case_lora\models\qwen\Qwen2___5-VL-3B-Instruct
+
+============================================================
+使用 HuggingFace 加载模型
+============================================================
+当前可用内存: 8.05 GB
+当前已用内存: 7.74 GB
+正在加载 Qwen2.5-VL-3B 模型...
+Tokenizer 加载完成
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. Note that this behavior will be extended to all models in a future release.
+Processor 加载完成
+未检测到 GPU，使用 CPU（速度较慢）
+使用 float32 加载模型（CPU环境下更稳定）
+Loading checkpoint shards:   0%|                                      | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|###############               | 1/2 [00:16<00:16, 16.20s/it]Loading checkpoint shards: 100%|##############################| 2/2 [00:48<00:00, 25.76s/it]Loading checkpoint shards: 100%|##############################| 2/2 [00:48<00:00, 24.34s/it]
+模型加载后内存使用: 14.07 GB
+设置 tokenizer 参数...
+tokenizer 参数设置完成
+模型加载完成！
+Step 2: 模型下载与加载完成
+
+
+============================================================
+Step 3: 训练前推理测试（原始模型）
+============================================================
+
+============================================================
+训练前推理测试（原始模型）
+============================================================
+使用原始下载的 Qwen2.5-VL-3B 模型识别测试图片...
+原始模型输出:
+- 总里程：528915公里
+- 当前速度：0公里/小时
+- 当前时间：无法读取
+- 当前温度：无法读取
+- 当前挡位：无法读取<|im_end|>
+Step 3: 训练前推理测试完成
+
+
+============================================================
+Step 4: LoRA 配置
+============================================================
+
+============================================================
+配置 LoRA
+============================================================
+正在配置 LoRA 参数...
+LoRA 配置前内存使用: 15.57 GB
+已调用 enable_input_require_grads()
+LoRA 目标模块数量: 252
+  - model.language_model.layers.6.mlp.up_proj
+  - model.language_model.layers.8.mlp.up_proj
+  - model.language_model.layers.4.self_attn.v_proj
+  - model.language_model.layers.15.self_attn.k_proj
+  - model.language_model.layers.25.self_attn.o_proj
+  - model.language_model.layers.28.mlp.down_proj
+  - model.language_model.layers.8.self_attn.v_proj
+  - model.language_model.layers.14.mlp.up_proj
+  - model.language_model.layers.1.self_attn.k_proj
+  - model.language_model.layers.7.self_attn.k_proj
+  ... 还有 242 个模块
+LoRA task_type: TaskType.CAUSAL_LM
+LoRA 配置参数: r=16, alpha=16, dropout=0.0
+trainable params: 29,933,568 || all params: 3,784,556,544 || trainable%: 0.7909
+LoRA 配置后内存使用: 15.61 GB
+LoRA 配置完成！
+Step 4: LoRA 配置完成
+
+
+============================================================
+Step 5: 数据准备
+============================================================
+
+============================================================
+数据准备
+============================================================
+训练数据: d:\Programs\cursor_proj\Case_lora\data\qwen-vl-train.xlsx
+加载训练数据...
+Excel 文件列名: ['id', 'prompt', 'image', 'response']
+数据集形状: (2, 4)
+成功处理样本 1: d:\Programs\cursor_proj\Case_lora\data\images/1-vehicle-odometer-reading.jpg
+成功处理样本 2: d:\Programs\cursor_proj\Case_lora\data\images/2-vehicle-odometer-reading.jpg
+成功加载 2 个训练样本
+
+创建数据集和数据整理器...
+训练数据集大小: 2
+数据集创建完成！
+Step 5: 数据准备完成
+
+
+============================================================
+Step 6: 模型训练
+============================================================
+
+验证训练环境...
+训练数据集大小: 2
+可用内存: 0.16 GB
+训练环境验证完成
+
+开始训练...
+训练前内存使用: 15.63 GB
+{'loss': 11.8852, 'grad_norm': 2.3939032554626465, 'learning_rate': 0.00010100000000000002, 'epoch': 1.0}
+{'loss': 15.3216, 'grad_norm': 3.3119730949401855, 'learning_rate': 0.0002, 'epoch': 2.0}
+{'loss': 11.6159, 'grad_norm': 2.575648546218872, 'learning_rate': 0.00019658620689655173, 'epoch': 3.0}
+{'loss': 14.2091, 'grad_norm': 4.440908908843994, 'learning_rate': 0.00019317241379310346, 'epoch': 4.0}
+{'loss': 10.3615, 'grad_norm': 3.7862727642059326, 'learning_rate': 0.00018975862068965519, 'epoch': 5.0}
+{'loss': 12.3969, 'grad_norm': 5.370122909545898, 'learning_rate': 0.0001863448275862069, 'epoch': 6.0}
+{'loss': 8.9826, 'grad_norm': 4.437753200531006, 'learning_rate': 0.00018293103448275864, 'epoch': 7.0}
+{'loss': 10.6474, 'grad_norm': 8.839987754821777, 'learning_rate': 0.00017951724137931036, 'epoch': 8.0}
+{'loss': 7.7537, 'grad_norm': 3.790921688079834, 'learning_rate': 0.0001761034482758621, 'epoch': 9.0}
+{'loss': 9.2795, 'grad_norm': 3.8207199573516846, 'learning_rate': 0.0001726896551724138, 'epoch': 10.0}
+{'loss': 6.8486, 'grad_norm': 2.5871760845184326, 'learning_rate': 0.00016927586206896554, 'epoch': 11.0}
+{'loss': 8.1936, 'grad_norm': 2.7150330543518066, 'learning_rate': 0.00016586206896551726, 'epoch': 12.0}
+{'loss': 6.1708, 'grad_norm': 1.699739694595337, 'learning_rate': 0.000162448275862069, 'epoch': 13.0}
+{'loss': 7.5134, 'grad_norm': 1.4118947982788086, 'learning_rate': 0.0001590344827586207, 'epoch': 14.0}
+{'loss': 5.7998, 'grad_norm': 1.48820161819458, 'learning_rate': 0.00015562068965517244, 'epoch': 15.0}
+{'loss': 7.2162, 'grad_norm': 1.2415581941604614, 'learning_rate': 0.00015220689655172416, 'epoch': 16.0}
+{'loss': 5.5636, 'grad_norm': 1.2519795894622803, 'learning_rate': 0.0001487931034482759, 'epoch': 17.0}
+{'loss': 6.9906, 'grad_norm': 0.9728925228118896, 'learning_rate': 0.00014537931034482761, 'epoch': 18.0}
+{'loss': 5.3494, 'grad_norm': 0.9634373188018799, 'learning_rate': 0.00014196551724137934, 'epoch': 19.0}
+{'loss': 6.7969, 'grad_norm': 0.7582592964172363, 'learning_rate': 0.00013855172413793106, 'epoch': 20.0}
+{'loss': 5.1591, 'grad_norm': 0.6841046214103699, 'learning_rate': 0.0001351379310344828, 'epoch': 21.0}
+{'loss': 6.637, 'grad_norm': 0.6158797740936279, 'learning_rate': 0.00013172413793103452, 'epoch': 22.0}
+{'loss': 5.0026, 'grad_norm': 0.5543789267539978, 'learning_rate': 0.00012831034482758624, 'epoch': 23.0}
+{'loss': 6.5043, 'grad_norm': 0.5294265747070312, 'learning_rate': 0.00012489655172413797, 'epoch': 24.0}
+{'loss': 4.8629, 'grad_norm': 0.49974656105041504, 'learning_rate': 0.00012148275862068969, 'epoch': 25.0}
+{'loss': 6.4, 'grad_norm': 0.42817237973213196, 'learning_rate': 0.00011806896551724142, 'epoch': 26.0}
+{'loss': 4.7648, 'grad_norm': 0.4194374084472656, 'learning_rate': 0.00011465517241379314, 'epoch': 27.0}
+{'loss': 6.323, 'grad_norm': 0.3784705400466919, 'learning_rate': 0.00011124137931034487, 'epoch': 28.0}
+{'loss': 4.6893, 'grad_norm': 0.3408873975276947, 'learning_rate': 0.00010782758620689659, 'epoch': 29.0}
+{'loss': 6.266, 'grad_norm': 0.366749107837677, 'learning_rate': 0.00010441379310344832, 'epoch': 30.0}
+{'loss': 4.6364, 'grad_norm': 0.2746727764606476, 'learning_rate': 0.00010100000000000004, 'epoch': 31.0}
+{'loss': 6.2224, 'grad_norm': 0.2579376995563507, 'learning_rate': 9.758620689655177e-05, 'epoch': 32.0}
+{'loss': 4.6008, 'grad_norm': 0.19946575164794922, 'learning_rate': 9.417241379310348e-05, 'epoch': 33.0}
+{'loss': 6.1944, 'grad_norm': 0.18156404793262482, 'learning_rate': 9.07586206896552e-05, 'epoch': 34.0}
+{'loss': 4.5791, 'grad_norm': 0.16021452844142914, 'learning_rate': 8.734482758620693e-05, 'epoch': 35.0}
+{'loss': 6.1774, 'grad_norm': 0.15627704560756683, 'learning_rate': 8.393103448275866e-05, 'epoch': 36.0}
+{'loss': 4.5657, 'grad_norm': 0.12926991283893585, 'learning_rate': 8.051724137931038e-05, 'epoch': 37.0}
+{'loss': 6.1657, 'grad_norm': 0.13514944911003113, 'learning_rate': 7.71034482758621e-05, 'epoch': 38.0}
+{'loss': 4.5567, 'grad_norm': 0.14066101610660553, 'learning_rate': 7.368965517241383e-05, 'epoch': 39.0}
+{'loss': 6.1569, 'grad_norm': 0.1151568815112114, 'learning_rate': 7.027586206896556e-05, 'epoch': 40.0}
+{'loss': 4.55, 'grad_norm': 0.09774451702833176, 'learning_rate': 6.686206896551728e-05, 'epoch': 41.0}
+{'loss': 6.1502, 'grad_norm': 0.10125408321619034, 'learning_rate': 6.344827586206901e-05, 'epoch': 42.0}
+{'loss': 4.545, 'grad_norm': 0.07886609435081482, 'learning_rate': 6.0034482758620726e-05, 'epoch': 43.0}
+{'loss': 6.145, 'grad_norm': 0.09259434789419174, 'learning_rate': 5.662068965517245e-05, 'epoch': 44.0}
+{'loss': 4.5412, 'grad_norm': 0.06785654276609421, 'learning_rate': 5.3206896551724176e-05, 'epoch': 45.0}
+{'loss': 6.1408, 'grad_norm': 0.08568539470434189, 'learning_rate': 4.9793103448275895e-05, 'epoch': 46.0}
+{'loss': 4.5383, 'grad_norm': 0.061055734753608704, 'learning_rate': 4.637931034482761e-05, 'epoch': 47.0}
+{'loss': 6.1374, 'grad_norm': 0.07901854068040848, 'learning_rate': 4.296551724137934e-05, 'epoch': 48.0}
+{'loss': 4.536, 'grad_norm': 0.056590255349874496, 'learning_rate': 3.955172413793106e-05, 'epoch': 49.0}
+{'loss': 6.1347, 'grad_norm': 0.07307947427034378, 'learning_rate': 3.613793103448278e-05, 'epoch': 50.0}
+{'loss': 4.5341, 'grad_norm': 0.05351613834500313, 'learning_rate': 3.272413793103451e-05, 'epoch': 51.0}
+{'loss': 6.1326, 'grad_norm': 0.06852459162473679, 'learning_rate': 2.931034482758623e-05, 'epoch': 52.0}
+{'loss': 4.5327, 'grad_norm': 0.05137898400425911, 'learning_rate': 2.589655172413795e-05, 'epoch': 53.0}
+{'loss': 6.1309, 'grad_norm': 0.06535840779542923, 'learning_rate': 2.2482758620689673e-05, 'epoch': 54.0}
+{'loss': 4.5317, 'grad_norm': 0.049861811101436615, 'learning_rate': 1.90689655172414e-05, 'epoch': 55.0}
+{'loss': 6.1297, 'grad_norm': 0.06326306611299515, 'learning_rate': 1.565517241379312e-05, 'epoch': 56.0}
+{'loss': 4.5309, 'grad_norm': 0.048772022128105164, 'learning_rate': 1.224137931034484e-05, 'epoch': 57.0}
+{'loss': 6.1289, 'grad_norm': 0.06194273382425308, 'learning_rate': 8.827586206896557e-06, 'epoch': 58.0}
+{'loss': 4.5304, 'grad_norm': 0.04803745821118355, 'learning_rate': 5.413793103448283e-06, 'epoch': 59.0}
+{'loss': 6.1284, 'grad_norm': 0.06121005117893219, 'learning_rate': 2.0000000000000033e-06, 'epoch': 60.0}
+{'train_runtime': 0, 'train_samples_per_second': 0, 'train_steps_per_second': 0, 'train_loss': 6.601494383811951, 'epoch': 60.0}
+
+训练后内存使用: 15.55 GB
+训练完成！
+Step 6: 模型训练完成
+
+
+============================================================
+Step 7: 训练后推理测试
+============================================================
+
+============================================================
+训练后推理测试（微调后模型）
+============================================================
+使用微调后的模型识别测试图片...
+微调后模型输出:
+- 总里程：528915公里
+- 当前速度：0公里/小时
+- 当前时间：19:18
+- 当前温度：+4.5°C
+- 当前挡位：停车挡/P<|im_end|>
+Step 7: 训练后推理测试完成
+
+
+============================================================
+Step 8: 模型保存
+============================================================
+
+保存 LoRA 适配器...
+模型保存成功: d:\Programs\cursor_proj\Case_lora\car_insurance_lora_model
+Tokenizer 保存成功
+Processor 保存成功
+
+训练完成! 模型已保存到 d:\Programs\cursor_proj\Case_lora\car_insurance_lora_model 目录
+Step 8: 模型保存完成
+
+================================================================================
+所有步骤执行完毕
+结束执行时间: 2026-07-03 10:50:35
+================================================================================

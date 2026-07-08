@@ -19,9 +19,9 @@ env/
 *~
 
 # Logs
-logs
-*.log
-*.tmp
+#logs
+#*.log
+#*.tmp
 
 # Model files
 models
