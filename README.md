@@ -155,8 +155,8 @@ workflow:
 训练日志保存在 `logs/` 目录下，命名格式为 `training_log_YYYYMMDD_HHMMSS.txt`。
 
 **重要说明**：请特别关注以下两个日志文件作为最终执行结果参考：
-1. `training_log_YYYYMMDD_HHMMSS.txt` - 完整训练过程日志
-2. `training_log_YYYYMMDD_HHMMSS.txt` - 最终训练统计信息
+`training_log_YYYYMMDD_HHMMSS.txt` - 为训练过程统计信息日志。包含训练时间、样本数、步骤数、训练损失等信息，以及每个 epoch 的训练损失，logs中包含两个日志文件。
+-日期早的日志文件执行微调后识别图片还是存在缺陷，部分信息识别不对，需要检查。日期最新的日志文件为最终成功训练的日志，识别了图片所有指定信息。
 
 日志格式示例：
 
