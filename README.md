@@ -150,6 +150,10 @@ workflow:
 - **可训练参数**：约 3700 万（占总参数的 0.98%）
 - **使用 GQA**：分组查询注意力，减少内存占用
 
+## LoRA 微调补充说明
+
+![LoRA微调补充说明](lora_microfine_tuning_explanation.png)
+
 ## 日志说明
 
 训练日志保存在 `logs/` 目录下，命名格式为 `training_log_YYYYMMDD_HHMMSS.txt`。
